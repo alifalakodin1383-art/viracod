@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ویراکد | طراحی سایت، وردپرس، هوش مصنوعی و اپلیکیشن</title>
+<meta name="description" content="تیم ویراکد: طراحی وب‌سایت، وردپرس، راهکارهای هوش مصنوعی و ساخت اپلیکیشن.">
+<script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("intro","lock");setTimeout(function(){document.documentElement.classList.remove("intro","lock")},8000)}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap" rel="stylesheet"></noscript>
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#F4FAFB; --text:#0B2E3A; --muted:#4B6A73; --line:#D5E6EA;
+  --blue:#0A6FB5; --green:#0B8A6A; --btn-text:#FFFFFF; --accent:#0B8A6A;
+  --ww:clamp(40px,10vw,140px);
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Vazirmatn",Tahoma,"Segoe UI",sans-serif;line-height:1.9;font-size:17px;padding-inline:calc(var(--ww) + clamp(8px,2vw,24px));position:relative;overflow-x:hidden}
+a{color:inherit}
+
+/* نیم‌دایره‌های متحرک کنار سایت */
+.wave{position:fixed;top:0;bottom:0;width:var(--ww);pointer-events:none;z-index:0;overflow:hidden}
+.wave.l{left:0}
+.wave.r{right:0;transform:scaleX(-1)}
+.wave svg{display:block;width:100%;height:100%}
+
+
+main,footer{position:relative;z-index:1}
+.wrap{max-width:1000px;margin:0 auto}
+.btn{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--green));color:var(--btn-text);font-weight:800;padding:12px 26px;border-radius:12px;text-decoration:none;border:0;font-family:inherit;font-size:16px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--text);border:2px solid var(--line)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+/* برند وسط */
+.hero{text-align:center;padding:48px 0 52px}
+.mark{width:76px;height:76px;margin:0 auto 6px;display:block}
+.brand{font-size:clamp(60px,15vw,128px);line-height:1.25;font-weight:900;margin:0;letter-spacing:-1px;
+  background:linear-gradient(100deg,var(--blue) 0%,var(--green) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand-wave{display:block;width:min(300px,60%);height:18px;margin:0 auto 22px}
+.hero h1{font-size:clamp(20px,3.6vw,30px);line-height:1.6;margin:0 auto 14px;font-weight:800;max-width:24em}
+.hero p{color:var(--muted);margin:0 auto 26px;max-width:46ch}
+nav{display:flex;gap:22px;justify-content:center;margin-bottom:26px;font-size:15px}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover,nav a:focus-visible{color:var(--text)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+section{padding:52px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(24px,4vw,34px);margin:0 0 8px;font-weight:800}
+.lead{color:var(--muted);margin:0 0 28px}
+.service{display:grid;grid-template-columns:64px 1fr;gap:18px;padding:22px 0;border-bottom:1px solid var(--line)}
+.service:last-child{border-bottom:0}
+.ico{width:56px;height:56px;border-radius:14px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;font-size:28px}
+.service h3{margin:0 0 4px;font-size:21px}
+.service p{margin:0 0 10px;color:var(--muted)}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tags span{font-size:13px;padding:2px 12px;border:1px solid var(--line);border-radius:99px;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s}
+.steps div{counter-increment:s;padding-top:14px;border-top:3px solid var(--accent)}
+.steps div::before{content:counter(s);font-weight:800;color:var(--accent);font-size:22px;display:block}
+.steps b{display:block}
+.steps span{color:var(--muted);font-size:15px}
+.channels{margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:8px 24px;max-width:560px}
+.channels[hidden]{display:none}
+.ch{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.ch:last-child{border-bottom:0}
+.ch .val{direction:ltr;unicode-bidi:isolate;text-align:right;font-weight:600;font-size:19px;color:var(--muted)}
+.ch .btn{padding:9px 18px;font-size:15px;white-space:nowrap}
+footer{padding:28px 0;color:var(--muted);font-size:14px;border-top:1px solid var(--line);text-align:center}
+@media (max-width:760px){
+  .steps{grid-template-columns:1fr 1fr}
+  .service{grid-template-columns:1fr}
+}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(10,111,181,.14)}
+.art{display:block;width:100%;height:auto}
+.card .body{padding:18px 22px 24px}
+.card h3{margin:0 0 4px;font-size:21px}
+.card p{margin:0 0 12px;color:var(--muted)}
+@media (max-width:760px){.cards{grid-template-columns:1fr}}
+.advs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.adv{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column}
+.aicon{width:52px;height:52px;margin-bottom:14px}
+.adv h3{margin:0 0 6px;font-size:21px}
+.adv p{margin:0 0 16px;color:var(--muted);font-size:16px}
+.diff{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line)}
+.diff b{display:block;color:var(--accent);margin-bottom:2px;font-size:15px}
+.diff span{font-size:15px;line-height:1.85}
+@media (max-width:900px){.advs{grid-template-columns:1fr}}
+.reveal{transition:opacity 1s ease,transform 1.1s cubic-bezier(.22,.8,.3,1)}
+html.intro .reveal{opacity:0;transform:translateY(90px)}
+html.intro .float{opacity:0;pointer-events:none}
+html.lock,html.lock body{overflow:hidden;height:100%}
+.brandbox{will-change:transform;transform-origin:center}
+.card{cursor:pointer}
+.more{display:inline-block;margin-top:14px;font-weight:800;color:var(--accent)}
+.rq-ov{position:fixed;inset:0;background:rgba(11,46,58,.45);opacity:0;pointer-events:none;transition:opacity .3s;z-index:29}
+.rq-ov.on{opacity:1;pointer-events:auto}
+.rq-sheet{position:fixed;left:0;right:0;margin:0 auto;bottom:0;max-width:720px;max-height:90vh;overflow:auto;background:#fff;border-radius:22px 22px 0 0;padding:22px;padding-bottom:calc(26px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .45s cubic-bezier(.22,.8,.3,1);z-index:30;box-shadow:0 -10px 40px rgba(11,46,58,.2)}
+.rq-sheet.on{transform:none}
+.rq-sheet header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.rq-sheet h3{margin:0;font-size:24px}
+.rq-sheet .lead{margin:4px 0 14px}
+.rq-sheet h4{margin:16px 0 8px;font-size:16px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer;font-size:15px;line-height:1.6}
+.opt:has(input:checked){border-color:var(--accent);background:var(--surface)}
+.opt input{width:20px;height:20px;accent-color:#0B8A6A;flex:none}
+.rq-sheet label.f{display:block;font-size:14px;color:var(--muted);margin:12px 0 2px}
+.rq-sheet input[type=text],.rq-sheet input[type=tel],.rq-sheet textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--text)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.rq-msg{margin-top:12px;font-size:15px;min-height:24px;white-space:pre-line}
+.rq-msg.err{color:#C0392B}.rq-msg.ok{color:#0B8A6A;font-weight:800}
+.rq-fb{margin-top:6px;display:flex;gap:8px;flex-wrap:wrap}
+.rq-alt{margin-top:18px;padding-top:6px;border-top:1px dashed var(--line)}
+@media (max-width:560px){.opts{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.rq-sheet,.rq-ov{transition:none}}
+.ctr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ctr div{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--surface)}
+.ctr b{display:block;margin-bottom:4px;font-size:17px;color:var(--accent)}
+.ctr span{font-size:15px;line-height:1.9;color:var(--text)}
+@media (max-width:560px){.ctr{grid-template-columns:1fr}}
+.paybox{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px;max-width:560px}
+.note2{color:var(--muted);font-size:14px}
+.cardno{direction:ltr;unicode-bidi:isolate;font-weight:800;font-size:clamp(22px,5.5vw,32px);letter-spacing:1px}
+.paysteps{max-width:560px;padding-inline-start:22px;color:var(--text)}
+.paysteps li{margin:4px 0}
+.card.wide{grid-column:1/-1;flex-direction:row}
+.card.wide .art{width:44%;flex:none}
+.card.wide .body{flex:1;align-self:center}
+@media (max-width:760px){.card.wide{flex-direction:column}.card.wide .art{width:100%}}
+.skip{position:absolute;top:-60px;inset-inline-start:12px;background:var(--surface);padding:8px 14px;border-radius:8px;z-index:20}
+.skip:focus{top:8px}
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.why div{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+.why b{display:block;margin-bottom:4px;font-size:17px}
+.why span{color:var(--muted);font-size:15px;line-height:1.8}
+.service:hover .ico{border-color:var(--accent)}
+.btn{transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.float{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:calc(var(--ww) + 12px);z-index:6;box-shadow:0 6px 20px rgba(10,111,181,.35);transition:opacity .2s,transform .2s}
+.float.hide{opacity:0;pointer-events:none;transform:translateY(12px)}
+@media (max-width:760px){.why{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card{transition:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#top">رفتن به محتوا</a>
+<div class="wave l" aria-hidden="true"></div>
+<div class="wave r" aria-hidden="true"></div>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div class="brandbox">
+      <svg class="mark" viewBox="0 0 76 76" role="img" aria-label="لوگوی ویراکد">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A6FB5"/><stop offset="1" stop-color="#12B886"/></linearGradient></defs>
+        <rect width="76" height="76" rx="22" fill="url(#g)"/>
+        <path d="M14 30c8-9 14 9 24 0s16 9 24 0" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+        <path d="M14 46c8-9 14 9 24 0s16 9 24 0" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <h2 class="brand" style="margin:0">ویراکد</h2>
+      <svg class="brand-wave" viewBox="0 0 300 18" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="w" x1="0" x2="1"><stop offset="0" stop-color="#1E88D8"/><stop offset="1" stop-color="#1FBF8F"/></linearGradient></defs>
+        <path d="M0 9c12-12 25-12 37.5 0s25 12 37.5 0 25-12 37.5 0 25 12 37.5 0 25-12 37.5 0 25 12 37.5 0 25-12 37.5 0" fill="none" stroke="url(#w)" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      </div>
+      <div class="reveal">
+      <nav aria-label="منو">
+        <a href="#services">خدمات</a>
+        <a href="#advantages">مزیت کار</a>
+        <a href="#process">روش کار</a>
+        <a href="#contact">تماس</a>
+      </nav>
+      <h1>سایت، اپلیکیشن و هوش مصنوعی، از ایده تا تحویل نهایی</h1>
+      <p>تیم ما با ترکیب برنامه‌نویسی، طراحی UI/UX، سئو و امنیت داده، پروژه شما را کامل و تمیز تحویل می‌دهد.</p>
+      <div class="actions">
+        <a class="btn" href="#contact">شروع پروژه</a>
+        <a class="btn ghost" href="#services">دیدن خدمات</a>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="reveal" id="why">
+    <div class="wrap">
+      <h2>چرا ما</h2>
+      <p class="lead">یک تیم، چند تخصص؛ بدون دست‌به‌دست شدن پروژه.</p>
+      <div class="why">
+        <div><b>برنامه‌نویسی</b><span>از سایت ساده تا سیستم اختصاصی و اپلیکیشن، با پایتون و جاوااسکریپت.</span></div>
+        <div><b>طراحی UI/UX</b><span>رابطی که کاربر بدون راهنما می‌فهمد.</span></div>
+        <div><b>سئو از روز اول</b><span>ساختار سایت برای دیده شدن در گوگل ساخته می‌شود.</span></div>
+        <div><b>امنیت داده</b><span>اطلاعات شما و مشتری‌هایتان محافظت می‌شود.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" id="services">
+    <div class="wrap">
+      <h2>خدمات ما</h2>
+      <p class="lead">پنج حوزه‌ی اصلی که روی آن‌ها کار می‌کنیم.</p>
+      <div class="cards">
+      <article class="card" data-svc="web" tabindex="0" role="button" aria-haspopup="dialog">
+        <svg class="art" viewBox="0 0 400 240" role="img" aria-label="تصویر طراحی سایت">
+          <defs><linearGradient id="a1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DCEEFB"/><stop offset="1" stop-color="#DDF7EC"/></linearGradient>
+          <linearGradient id="a1b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1E88D8"/><stop offset="1" stop-color="#1FBF8F"/></linearGradient></defs>
+          <rect width="400" height="240" fill="url(#a1)"/>
+          <circle cx="352" cy="52" r="24" fill="none" stroke="#1E88D8" stroke-width="3" opacity=".6"/><ellipse cx="352" cy="52" rx="10" ry="24" fill="none" stroke="#1E88D8" stroke-width="2.5" opacity=".6"/><path d="M328 52h48" stroke="#1E88D8" stroke-width="2.5" opacity=".6"/>
+          <circle cx="44" cy="190" r="30" fill="#1FBF8F" opacity=".25"/>
+          <rect x="62" y="34" width="276" height="180" rx="14" fill="#fff" stroke="#CFE3EA" stroke-width="2"/>
+          <path d="M62 48a14 14 0 0 1 14-14h248a14 14 0 0 1 14 14v14H62z" fill="#EAF4F8"/>
+          <circle cx="80" cy="48" r="4" fill="#1FBF8F"/><circle cx="94" cy="48" r="4" fill="#1E88D8"/><circle cx="108" cy="48" r="4" fill="#CFE3EA"/>
+          <rect x="128" y="42" width="130" height="12" rx="6" fill="#fff"/>
+          <rect x="80" y="82" width="124" height="14" rx="7" fill="#0A6FB5"/><rect x="80" y="104" width="96" height="8" rx="4" fill="#CFE3EA"/><rect x="80" y="118" width="108" height="8" rx="4" fill="#CFE3EA"/>
+          <rect x="80" y="138" width="58" height="20" rx="10" fill="#1FBF8F"/>
+          <rect x="222" y="78" width="100" height="84" rx="10" fill="url(#a1b)"/>
+          <circle cx="296" cy="100" r="9" fill="#fff" opacity=".85"/><path d="M222 146c18-14 30 8 50-6s34 6 50-4v26a10 10 0 0 1-10 10h-80a10 10 0 0 1-10-10z" fill="#fff" opacity=".35"/>
+          <rect x="80" y="174" width="72" height="28" rx="8" fill="#EAF4F8"/><rect x="164" y="174" width="72" height="28" rx="8" fill="#EAF4F8"/><rect x="248" y="174" width="74" height="28" rx="8" fill="#EAF4F8"/>
+          <path d="M286 176l0 36 9-8 6 14 7-3-6-14 12-1z" fill="#0B2E3A" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
+        </svg>
+        <div class="body"><h3>طراحی سایت</h3><p>سایت شرکتی، فروشگاهی، لندینگ پیج، پنل مدیریت و سیستم‌های اختصاصی. ریسپانسیو، سریع و آماده سئو. بک‌اند و API را هم با پایتون یا Node.js می‌سازیم.</p><div class="tags"><span>HTML / CSS / JS</span><span>Node.js</span><span>پایتون</span><span>سئو</span><span>UI/UX</span></div><span class="more">جزئیات و ثبت سفارش ‹</span></div>
+      </article>
+      <article class="card" data-svc="wordpress" tabindex="0" role="button" aria-haspopup="dialog">
+        <svg class="art" viewBox="0 0 400 240" role="img" aria-label="تصویر طراحی وردپرس">
+          <defs><linearGradient id="a2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DDF7EC"/><stop offset="1" stop-color="#DCEEFB"/></linearGradient></defs>
+          <rect width="400" height="240" fill="url(#a2)"/>
+          <circle cx="360" cy="40" r="46" fill="#1E88D8" opacity=".12"/>
+          <g>
+            <rect x="96" y="104" width="86" height="64" rx="14" fill="#0A6FB5"/><circle cx="139" cy="104" r="12" fill="#0A6FB5"/>
+            <rect x="188" y="104" width="86" height="64" rx="14" fill="#1FBF8F"/><circle cx="231" cy="104" r="12" fill="#1FBF8F"/>
+            <rect x="96" y="174" width="86" height="46" rx="14" fill="#fff" stroke="#CFE3EA" stroke-width="2"/>
+            <rect x="188" y="174" width="86" height="46" rx="14" fill="#0B2E3A"/>
+            <rect x="110" y="188" width="40" height="8" rx="4" fill="#CFE3EA"/><rect x="202" y="188" width="40" height="8" rx="4" fill="#1FBF8F"/>
+          </g>
+          <g transform="rotate(-12 170 56)"><rect x="128" y="30" width="86" height="56" rx="14" fill="#fff" stroke="#1E88D8" stroke-width="3" stroke-dasharray="8 6"/><rect x="144" y="52" width="54" height="8" rx="4" fill="#1E88D8" opacity=".5"/></g>
+          <circle cx="318" cy="150" r="30" fill="none" stroke="#0B8A6A" stroke-width="12" stroke-dasharray="9 9.4"/><circle cx="318" cy="150" r="22" fill="#fff"/><circle cx="318" cy="150" r="8" fill="#0B8A6A"/>
+          <g transform="translate(300 54)"><rect x="0" y="12" width="36" height="30" rx="9" fill="#1E88D8"/><rect x="8" y="0" width="5" height="16" rx="2.5" fill="#0B2E3A"/><rect x="23" y="0" width="5" height="16" rx="2.5" fill="#0B2E3A"/><path d="M18 42v14" stroke="#0B2E3A" stroke-width="5" stroke-linecap="round"/></g>
+          <path d="M56 70l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#1FBF8F"/><circle cx="64" cy="190" r="6" fill="#1E88D8" opacity=".6"/>
+        </svg>
+        <div class="body"><h3>طراحی وردپرس</h3><p>راه‌اندازی سایت وردپرسی، قالب اختصاصی، افزونه‌نویسی، بهینه‌سازی سرعت و امنیت، و آموزش مدیریت سایت به شما.</p><div class="tags"><span>قالب اختصاصی</span><span>ووکامرس</span><span>افزونه</span><span>امنیت</span></div><span class="more">جزئیات و ثبت سفارش ‹</span></div>
+      </article>
+      <article class="card" data-svc="ai" tabindex="0" role="button" aria-haspopup="dialog">
+        <svg class="art" viewBox="0 0 400 240" role="img" aria-label="تصویر هوش مصنوعی">
+          <defs><linearGradient id="a3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D6EBFA"/><stop offset="1" stop-color="#D7F6EA"/></linearGradient>
+          <linearGradient id="a3b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A6FB5"/><stop offset="1" stop-color="#12B886"/></linearGradient></defs>
+          <rect width="400" height="240" fill="url(#a3)"/>
+          <g stroke="#1E88D8" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7">
+            <path d="M140 100H92V60H50"/><path d="M140 140H80v44H44"/><path d="M200 70V28"/><path d="M260 100h50V60h40"/><path d="M260 140h60v44h36"/><path d="M200 210v22"/>
+          </g>
+          <g fill="#fff" stroke="#1FBF8F" stroke-width="3"><circle cx="50" cy="60" r="8"/><circle cx="44" cy="184" r="8"/><circle cx="200" cy="28" r="8"/><circle cx="350" cy="60" r="8"/><circle cx="356" cy="184" r="8"/></g>
+          <rect x="140" y="70" width="120" height="120" rx="26" fill="url(#a3b)"/>
+          <rect x="156" y="86" width="88" height="88" rx="18" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="2"/>
+          <text x="200" y="146" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="44" fill="#fff">AI</text>
+          <g transform="translate(286 22)"><rect width="78" height="42" rx="14" fill="#fff"/><path d="M16 42l-8 14 22-14z" fill="#fff"/><circle cx="25" cy="21" r="5" fill="#1E88D8"/><circle cx="39" cy="21" r="5" fill="#1FBF8F"/><circle cx="53" cy="21" r="5" fill="#0B2E3A"/></g>
+          <path d="M96 112l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#0B8A6A"/>
+          <g transform="translate(300 196)" fill="#1E88D8"><rect x="0" y="14" width="10" height="16" rx="3"/><rect x="16" y="6" width="10" height="24" rx="3" fill="#1FBF8F"/><rect x="32" y="0" width="10" height="30" rx="3"/></g>
+        </svg>
+        <div class="body"><h3>طراحی هوش مصنوعی</h3><p>چت‌بات هوشمند، اتوماسیون کارهای تکراری، تحلیل داده و اتصال هوش مصنوعی به کسب‌وکار یا سایت شما. این کارها را با پایتون هم انجام می‌دهیم.</p><div class="tags"><span>چت‌بات</span><span>اتوماسیون</span><span>تحلیل داده</span><span>پایتون</span></div><span class="more">جزئیات و ثبت سفارش ‹</span></div>
+      </article>
+      <article class="card" data-svc="app" tabindex="0" role="button" aria-haspopup="dialog">
+        <svg class="art" viewBox="0 0 400 240" role="img" aria-label="تصویر طراحی اپلیکیشن">
+          <defs><linearGradient id="a4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DDF7EC"/><stop offset="1" stop-color="#D6EBFA"/></linearGradient>
+          <linearGradient id="a4b" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1E88D8"/><stop offset="1" stop-color="#1FBF8F"/></linearGradient></defs>
+          <rect width="400" height="240" fill="url(#a4)"/>
+          <circle cx="200" cy="130" r="92" fill="#fff" opacity=".45"/>
+          <rect x="146" y="14" width="108" height="214" rx="24" fill="#0B2E3A"/>
+          <rect x="153" y="21" width="94" height="200" rx="18" fill="#fff"/>
+          <rect x="182" y="26" width="36" height="7" rx="3.5" fill="#0B2E3A"/>
+          <rect x="161" y="42" width="78" height="38" rx="10" fill="url(#a4b)"/><rect x="169" y="52" width="40" height="7" rx="3.5" fill="#fff"/><rect x="169" y="65" width="26" height="6" rx="3" fill="#fff" opacity=".6"/>
+          <rect x="161" y="90" width="78" height="28" rx="8" fill="#EAF4F8"/><circle cx="175" cy="104" r="7" fill="#1FBF8F"/><rect x="188" y="98" width="42" height="6" rx="3" fill="#CFE3EA"/><rect x="188" y="108" width="28" height="5" rx="2.5" fill="#CFE3EA"/>
+          <rect x="161" y="124" width="78" height="28" rx="8" fill="#EAF4F8"/><circle cx="175" cy="138" r="7" fill="#1E88D8"/><rect x="188" y="132" width="42" height="6" rx="3" fill="#CFE3EA"/><rect x="188" y="142" width="28" height="5" rx="2.5" fill="#CFE3EA"/>
+          <rect x="161" y="158" width="78" height="28" rx="8" fill="#EAF4F8"/><circle cx="175" cy="172" r="7" fill="#0A6FB5"/><rect x="188" y="166" width="42" height="6" rx="3" fill="#CFE3EA"/>
+          <g fill="#CFE3EA"><circle cx="175" cy="206" r="6"/><circle cx="200" cy="206" r="6" fill="#1FBF8F"/><circle cx="225" cy="206" r="6"/></g>
+          <g transform="translate(40 64)"><rect width="84" height="46" rx="14" fill="#fff" stroke="#CFE3EA" stroke-width="2"/><circle cx="24" cy="23" r="12" fill="#1FBF8F"/><path d="M18 23l4 4 8-9" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="42" y="14" width="30" height="7" rx="3.5" fill="#0B2E3A"/><rect x="42" y="27" width="22" height="6" rx="3" fill="#CFE3EA"/></g>
+          <g transform="translate(284 120)"><rect width="76" height="52" rx="14" fill="#fff" stroke="#CFE3EA" stroke-width="2"/><path d="M12 38l14-14 10 8 16-18 12 10" fill="none" stroke="#1E88D8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <circle cx="330" cy="46" r="20" fill="#1E88D8" opacity=".85"/><path d="M330 36l3 7 7 .8-5.3 4.6 1.6 7.1-6.3-3.8-6.3 3.8 1.6-7.1-5.3-4.6 7-.8z" fill="#fff"/>
+        </svg>
+        <div class="body"><h3>طراحی اپلیکیشن</h3><p>اپلیکیشن موبایل برای اندروید و iOS، از طراحی رابط کاربری تا انتشار. با اتصال به سرور (بک‌اند با پایتون یا Node.js) و پنل مدیریت.</p><div class="tags"><span>اندروید</span><span>iOS</span><span>طراحی رابط</span><span>بک‌اند (پایتون)</span></div><span class="more">جزئیات و ثبت سفارش ‹</span></div>
+      </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" id="advantages">
+    <div class="wrap">
+      <h2>مزیت کار</h2>
+      <p class="lead">چیزهایی که کار ما را از بقیه جدا می‌کند.</p>
+      <div class="advs">
+        <article class="adv">
+          <svg class="aicon" viewBox="0 0 56 56" aria-hidden="true"><defs><linearGradient id="ag1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A6FB5"/><stop offset="1" stop-color="#12B886"/></linearGradient></defs><rect width="56" height="56" rx="16" fill="url(#ag1)"/><circle cx="28" cy="28" r="14" fill="none" stroke="#fff" stroke-width="3.5"/><circle cx="28" cy="28" r="6" fill="none" stroke="#fff" stroke-width="3.5"/><circle cx="28" cy="28" r="1.8" fill="#fff"/></svg>
+          <h3>دقت در کار</h3>
+          <p>هر پروژه قبل از تحویل تست می‌شود و کد آن را یک عضو دیگر تیم بازبینی می‌کند. جزئیات طراحی، سرعت سایت و ساختار سئو هم در همین مرحله چک می‌شود.</p>
+          <div class="diff"><b>فرق ما با بقیه</b><span>در بسیاری از پروژه‌ها فقط یک نفر کار را می‌سازد و تحویل می‌دهد. اینجا هر کار با دو جفت چشم کنترل می‌شود، پس خطا قبل از رسیدن به شما پیدا می‌شود.</span></div>
+        </article>
+        <article class="adv">
+          <svg class="aicon" viewBox="0 0 56 56" aria-hidden="true"><defs><linearGradient id="ag2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A6FB5"/><stop offset="1" stop-color="#12B886"/></linearGradient></defs><rect width="56" height="56" rx="16" fill="url(#ag2)"/><path d="M15 18a5 5 0 0 1 5-5h16a5 5 0 0 1 5 5v11a5 5 0 0 1-5 5H27l-8 7v-7h0a5 5 0 0 1-4-5z" fill="#fff"/><circle cx="23" cy="24" r="2.2" fill="#0A6FB5"/><circle cx="28" cy="24" r="2.2" fill="#0F9D7E"/><circle cx="33" cy="24" r="2.2" fill="#0A6FB5"/></svg>
+          <h3>پشتیبانی سریع</h3>
+          <p>از راه تلگرام، ایتا، بله، روبیکا و تماس تلفنی در دسترس هستیم. مشکل یا درخواست تغییر را مستقیم به تیم می‌گویید و منتظر تیکت و صف نمی‌مانید.</p>
+          <div class="diff"><b>فرق ما با بقیه</b><span>پشتیبانی فقط تا لحظه تحویل نیست. بعد از تحویل هم رفع اشکال و راهنمایی را ادامه می‌دهیم.</span></div>
+        </article>
+        <article class="adv">
+          <svg class="aicon" viewBox="0 0 56 56" aria-hidden="true"><defs><linearGradient id="ag3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A6FB5"/><stop offset="1" stop-color="#12B886"/></linearGradient></defs><rect width="56" height="56" rx="16" fill="url(#ag3)"/><circle cx="28" cy="29" r="14" fill="none" stroke="#fff" stroke-width="3.5"/><path d="M28 21v8l5 3" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 12h10" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/></svg>
+          <h3>بهبود زمان تحویل</h3>
+          <p>برنامه‌نویس، طراح UI/UX، متخصص سئو و امنیت در یک تیم کار می‌کنند. کارها هم‌زمان جلو می‌روند و پروژه بین چند نفر بیرونی دست‌به‌دست نمی‌شود.</p>
+          <div class="diff"><b>فرق ما با بقیه</b><span>زمان تحویل از ابتدا و به‌صورت مرحله‌ای مشخص می‌شود. هر مرحله را می‌بینید و تأیید می‌کنید، پس تاخیر زودتر دیده و جبران می‌شود.</span></div>
+        </article>
+      <article class="card wide" data-svc="accounting" tabindex="0" role="button" aria-haspopup="dialog">
+        <svg class="art" viewBox="0 0 400 240" role="img" aria-label="تصویر حسابداری">
+          <defs><linearGradient id="a5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D6EBFA"/><stop offset="1" stop-color="#DDF7EC"/></linearGradient>
+          <linearGradient id="a5b" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1E88D8"/><stop offset="1" stop-color="#1FBF8F"/></linearGradient></defs>
+          <rect width="400" height="240" fill="url(#a5)"/>
+          <circle cx="360" cy="40" r="14" fill="#1FBF8F" opacity=".7"/><circle cx="342" cy="52" r="9" fill="#1E88D8" opacity=".6"/><circle cx="40" cy="214" r="22" fill="#1FBF8F" opacity=".22"/>
+          <g transform="rotate(-6 100 120)"><rect x="40" y="38" width="116" height="164" rx="12" fill="#fff" stroke="#CFE3EA" stroke-width="2"/>
+          <rect x="40" y="38" width="116" height="30" rx="12" fill="#0A6FB5"/><rect x="40" y="56" width="116" height="12" fill="#0A6FB5"/>
+          <rect x="54" y="46" width="48" height="8" rx="4" fill="#fff"/>
+          <rect x="54" y="82" width="88" height="7" rx="3.5" fill="#CFE3EA"/><rect x="54" y="98" width="70" height="7" rx="3.5" fill="#CFE3EA"/><rect x="54" y="114" width="80" height="7" rx="3.5" fill="#CFE3EA"/><rect x="54" y="130" width="60" height="7" rx="3.5" fill="#CFE3EA"/>
+          <rect x="54" y="152" width="88" height="2" fill="#CFE3EA"/><rect x="54" y="166" width="50" height="10" rx="5" fill="#1FBF8F"/>
+          <circle cx="128" cy="176" r="12" fill="#fff" stroke="#1FBF8F" stroke-width="3"/><path d="M122 176l4 4 8-9" fill="none" stroke="#1FBF8F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <rect x="170" y="34" width="110" height="174" rx="18" fill="#0B2E3A"/>
+          <rect x="182" y="46" width="86" height="38" rx="9" fill="#DFF6EC"/>
+          <text x="262" y="73" text-anchor="end" font-family="Arial,sans-serif" font-weight="800" font-size="22" fill="#0B2E3A">1,250</text>
+          <rect x="184" y="98" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="206" y="98" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="228" y="98" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="250" y="98" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="184" y="122" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="206" y="122" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="228" y="122" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="250" y="122" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="184" y="146" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="206" y="146" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="228" y="146" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="250" y="146" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="184" y="170" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="206" y="170" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="228" y="170" width="18" height="16" rx="5" fill="#3B5C66"/><rect x="250" y="170" width="18" height="16" rx="5" fill="#1FBF8F"/>
+          <rect x="292" y="62" width="92" height="104" rx="12" fill="#fff" stroke="#CFE3EA" stroke-width="2"/>
+          <rect x="304" y="122" width="14" height="30" rx="3" fill="#1E88D8"/><rect x="324" y="108" width="14" height="44" rx="3" fill="#1FBF8F"/><rect x="344" y="92" width="14" height="60" rx="3" fill="#0A6FB5"/>
+          <path d="M304 106l22-16 20 8 24-22" fill="none" stroke="url(#a5b)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="body"><h3>حسابداری</h3><p>دفترداری و ثبت اسناد، صدور فاکتور، حقوق و دستمزد، مالیات، گزارش‌های مالی و کنترل هزینه‌ها، برای کسب‌وکار کوچک تا شرکت.</p><div class="tags"><span>دفترداری</span><span>فاکتور</span><span>حقوق و دستمزد</span><span>مالیات</span><span>گزارش مالی</span></div><span class="more">جزئیات و ثبت سفارش ‹</span></div>
+      </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" id="process">
+    <div class="wrap">
+      <h2>روش کار</h2>
+      <p class="lead">مسیر هر پروژه شفاف و مرحله‌به‌مرحله است.</p>
+      <div class="steps">
+        <div><b>بررسی نیاز</b><span>نیاز و بودجه شما را می‌شنویم و قیمت و زمان می‌دهیم.</span></div>
+        <div><b>طراحی</b><span>نمونه رابط کاربری را می‌بینید و تأیید می‌کنید.</span></div>
+        <div><b>توسعه</b><span>کدنویسی و تست، با گزارش پیشرفت.</span></div>
+        <div><b>تحویل</b><span>تحویل کامل و پشتیبانی بعد از تحویل.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" id="pay">
+    <div class="wrap">
+      <h2>پرداخت</h2>
+      <p class="lead">پرداخت هزینه پروژه به‌صورت کارت‌به‌کارت.</p>
+      <div class="paybox">
+        <div><div class="note2">شماره کارت</div><div class="cardno">5892 1017 2274 3487</div></div>
+        <button class="btn ghost copy" type="button" data-copy="5892101722743487">کپی شماره</button>
+      </div>
+      <ol class="paysteps">
+        <li>مبلغ و شماره پرونده را با ما هماهنگ کن.</li>
+        <li>مبلغ را به شماره کارت بالا واریز کن.</li>
+        <li>رسید را همراه شماره پرونده در تلگرام یا بله بفرست تا پرداخت تأیید شود.</li>
+      </ol>
+      <p class="lead" style="font-size:14px">قبل از واریز، نام صاحب حساب را از طریق تلگرام یا بله با ما تأیید کن.</p>
+    </div>
+  </section>
+
+  <section class="reveal" id="contact">
+    <div class="wrap">
+      <h2>تماس با ما</h2>
+      <p class="lead">برای مشاوره و قیمت پروژه، تماس بگیرید.</p>
+      <button class="btn" id="toggle" type="button" aria-expanded="false" aria-controls="channels">ارتباط</button>
+      <div class="channels" id="channels" hidden>
+        <div class="ch"><div><b>تماس تلفنی</b><div class="val">09169856650</div></div><a class="btn" href="tel:09169856650">تماس</a></div>
+        <div class="ch"><div><b>تلگرام</b><div class="val">@Ialiw_fk</div></div><a class="btn" href="https://t.me/Ialiw_fk" target="_blank" rel="noopener">باز کردن</a></div>
+        <div class="ch"><div><b>ایتا</b><div class="val">09169856650</div></div><button class="btn ghost copy" type="button" data-copy="09169856650">کپی شماره</button></div>
+        <div class="ch"><div><b>بله</b><div class="val">@Ialiw_fk</div></div><a class="btn" href="https://ble.ir/Ialiw_fk" target="_blank" rel="noopener">باز کردن</a></div>
+        <div class="ch"><div><b>روبیکا</b><div class="val">09169856650</div></div><button class="btn ghost copy" type="button" data-copy="09169856650">کپی شماره</button></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="reveal">© <span id="year"></span> ویراکد. تمام حقوق محفوظ است.</footer>
+
+<div class="rq-ov" id="rq-ov"></div>
+<div class="rq-sheet" id="rq-sheet" role="dialog" aria-modal="true" aria-labelledby="rq-t">
+  <header><div><h3 id="rq-t"></h3><p class="lead" id="rq-d"></p></div><button class="btn ghost" id="rq-close" type="button" style="padding:8px 16px">بستن</button></header>
+  <h4>نوع عملکرد مورد نیاز (هر چند تا خواستی انتخاب کن)</h4>
+  <div class="opts" id="rq-opts"></div>
+  <h4>نوع همکاری (اختیاری)</h4>
+  <div class="ctr">
+    <div><b>قرارداد ۶ ماهه</b><span>با ثبت قرارداد ۶ ماهه، یک سری امتیازات ویژه مثل <strong>سئو</strong> و <strong>طراحی UI/UX</strong> برای پروژه‌ات انجام می‌شود.</span></div>
+    <div><b>قرارداد یک‌ساله</b><span>شامل <strong>همه‌ی بخش‌های مجموعه</strong> است: طراحی سایت، وردپرس، هوش مصنوعی، اپلیکیشن، سئو، UI/UX و امنیت داده. پشتیبانی <strong>تمام‌وقت، از ۸ صبح تا ۹ شب</strong> انجام می‌شود.</span></div>
+  </div>
+  <p class="lead" style="font-size:14px;margin:8px 0 10px">جزئیات دقیق هر قرارداد به‌صورت کتبی نوشته و امضا می‌شود.</p>
+  <div class="opts" id="rq-contract">
+    <label class="opt"><input type="radio" name="rq-contract" value="none" data-l="" checked><span>فقط همین پروژه</span></label>
+    <label class="opt"><input type="radio" name="rq-contract" value="6m" data-l="قرارداد ۶ ماهه"><span>قرارداد ۶ ماهه</span></label>
+    <label class="opt"><input type="radio" name="rq-contract" value="12m" data-l="قرارداد یک‌ساله"><span>قرارداد یک‌ساله</span></label>
+  </div>
+  <p class="lead" style="font-size:14px;margin:8px 0 0">قرارداد اختیاری است. قیمت و حدود کار بعد از تماس با هم مشخص می‌شود.</p>
+  <h4>شخصی‌سازی: دقیقاً چه چیزی می‌خواهی؟</h4>
+  <label class="f" for="rq-msg-in">توضیح بده چه ویژگی‌ها و ظاهری مدنظرته</label>
+  <textarea id="rq-msg-in" rows="4" maxlength="1000" placeholder="مثلاً: فروشگاه لوازم آرایشی با پرداخت آنلاین، رنگ سبز، ..."></textarea>
+  <label class="f" for="rq-name">نام (اختیاری)</label><input type="text" id="rq-name" maxlength="80" autocomplete="name">
+  <label class="f" for="rq-phone">شماره تماس *</label><input type="tel" id="rq-phone" maxlength="20" inputmode="tel" autocomplete="tel">
+  <input class="hp" type="text" id="rq-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <div style="margin-top:16px"><button class="btn" id="rq-send" type="button">ارسال درخواست</button></div>
+  <div class="rq-msg" id="rq-out" role="status"></div>
+  <div class="rq-alt">
+    <h4>راه‌های ثبت سفارش (هر کدام را خواستی انتخاب کن)</h4>
+    <div class="rq-fb" id="rq-fb">
+      <a class="btn" id="rq-tg" href="https://t.me/Ialiw_fk" target="_blank" rel="noopener">ارسال در تلگرام</a>
+      <button class="btn" id="rq-bale" type="button">ارسال در بله</button>
+      <a class="btn ghost" href="tel:09169856650">تماس تلفنی</a>
+      <button class="btn ghost" id="rq-copy" type="button">کپی متن سفارش</button>
+    </div>
+    <p class="lead" style="font-size:14px;margin:8px 0 0">تلگرام: متن خودکار آماده می‌شود. بله: متن کپی می‌شود، فقط داخل چت Paste کن.</p>
+  </div>
+</div>
+<button class="btn float" id="float" type="button" aria-label="ارتباط با ما">ارتباط با ما</button>
+<script>
+
+  // نیم‌دایره‌های نامنظم، ثابت، از بالا تا پایین
+  function rng(seed){return function(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};}
+  // نوار سینوسی دقیق: محور از -2π تا +2π (دو دوره کامل در ارتفاع صفحه)
+  // آبی: x = sin(θ + φ)    سبز: x = cos(θ + φ)  ← ۹۰ درجه اختلاف فاز
+  var sides = [], reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var TAU = 2 * Math.PI;
+  function buildSide(el, ph0){
+    var W = el.clientWidth, H = el.clientHeight;
+    el.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" shape-rendering="geometricPrecision" aria-hidden="true">' +
+      '<path class="wg" fill="#1FBF8F" fill-opacity=".5" stroke="#12A37F" stroke-width="2" stroke-linejoin="round"/>' +
+      '<path class="wb" fill="#1E88D8" fill-opacity=".8" stroke="#0A6FB5" stroke-width="2" stroke-linejoin="round"/></svg>';
+    return {W: W, H: H, ph0: ph0, g: el.querySelector('.wg'), b: el.querySelector('.wb')};
+  }
+  function curve(W, H, base, A, fn, phase){
+    var step = 2, n = Math.ceil(H / step), d = 'M0 0';
+    for (var i = 0; i <= n; i++) {
+      var y = Math.min(i * step, H);
+      var theta = -TAU + 2 * TAU * y / H + phase;
+      d += 'L' + (base + A * (1 + fn(theta))).toFixed(2) + ' ' + y.toFixed(2);
+    }
+    return d + 'L0 ' + H + 'Z';
+  }
+  function buildWaves(){
+    sides = [buildSide(document.querySelector('.wave.l'), 0), buildSide(document.querySelector('.wave.r'), Math.PI)];
+  }
+  function tick(t){
+    var phase = TAU * (t / 1000) / 5;
+    sides.forEach(function (sd) {
+      var p = phase + sd.ph0;
+      sd.g.setAttribute('d', curve(sd.W, sd.H, 0.04 * sd.W, 0.46 * sd.W, Math.cos, p));
+      sd.b.setAttribute('d', curve(sd.W, sd.H, 0.12 * sd.W, 0.38 * sd.W, Math.sin, p));
+    });
+    if (!reduced) requestAnimationFrame(tick);
+  }
+  buildWaves();
+  tick(0);
+  if (!reduced) requestAnimationFrame(tick);
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { buildWaves(); if (reduced) tick(0); }, 150); });
+  document.getElementById('year').textContent = new Date().toLocaleDateString('fa-IR', {year: 'numeric'});
+  var toggle = document.getElementById('toggle');
+  var panel = document.getElementById('channels');
+  function setOpen(open){
+    if (open) { panel.removeAttribute('hidden'); } else { panel.setAttribute('hidden', ''); }
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.textContent = open ? 'بستن' : 'ارتباط';
+  }
+  toggle.addEventListener('click', function () { setOpen(panel.hasAttribute('hidden')); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  var fl = document.getElementById('float');
+  fl.addEventListener('click', function () {
+    setOpen(true);
+    document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
+  });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) {
+      fl.classList.toggle('hide', en[0].isIntersecting);
+    }, {threshold: 0.25}).observe(document.getElementById('contact'));
+  }
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var num = b.getAttribute('data-copy');
+      function done() {
+        b.textContent = 'کپی شد ✓';
+        setTimeout(function () { b.textContent = 'کپی شماره'; }, 1800);
+      }
+      try { navigator.clipboard.writeText(num).then(done, function () { b.textContent = num; }); }
+      catch (e) { b.textContent = num; }
+    });
+  });
+
+  // انیمیشن شروع: ویراکد بزرگ در وسط، بعد از ۳ ثانیه محتوا آرام بالا می‌آید
+  (function () {
+    var root = document.documentElement;
+    if (!root.classList.contains('intro')) return;
+    var bb = document.querySelector('.brandbox'), done = false;
+    function place() {
+      if (done) return;
+      bb.style.transition = 'none';
+      bb.style.transform = '';
+      var r = bb.getBoundingClientRect();
+      var dy = window.innerHeight / 2 - (r.top + r.height / 2);
+      bb.style.transform = 'translateY(' + dy + 'px) scale(1.5)';
+    }
+    place();
+    window.addEventListener('resize', place);
+    window.addEventListener('load', place);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
+    setTimeout(function () {
+      done = true;
+      bb.style.transition = 'transform 1.1s cubic-bezier(.22,.8,.3,1)';
+      bb.style.transform = '';
+      root.classList.remove('intro');
+      setTimeout(function () { root.classList.remove('lock'); }, 1200);
+    }, 3000);
+  })();
+
+  // پنجره‌ی جزئیات خدمات + فرم شخصی‌سازی
+  var SV = {
+    web: {t: 'طراحی سایت', d: 'سایتی که دقیقاً مناسب کسب‌وکار تو ساخته می‌شود.',
+      o: ['سایت شرکتی و معرفی', 'فروشگاه اینترنتی', 'لندینگ پیج', 'پنل مدیریت و داشبورد', 'بک‌اند و API با پایتون', 'سیستم رزرو و ثبت‌نام', 'وبلاگ و پرتال خبری', 'اتصال درگاه پرداخت', 'سئوی فنی']},
+    wordpress: {t: 'طراحی وردپرس', d: 'سایت وردپرسی که خودت راحت مدیریتش کنی.',
+      o: ['قالب اختصاصی', 'فروشگاه ووکامرس', 'افزونه‌نویسی', 'افزایش سرعت', 'امنیت و بکاپ', 'اسکریپت و اتوماسیون با پایتون', 'ترمیم یا انتقال سایت', 'آموزش مدیریت سایت']},
+    ai: {t: 'طراحی هوش مصنوعی', d: 'هوش مصنوعی را به کار روزمره‌ی کسب‌وکارت وصل می‌کنیم.',
+      o: ['چت‌بات سایت', 'چت‌بات تلگرام یا بله', 'اتوماسیون کارهای تکراری (پایتون)', 'تحلیل داده و گزارش (پایتون)', 'وب‌اسکرپینگ و جمع‌آوری داده با پایتون', 'پاسخ‌گوی خودکار به پیام‌ها', 'تولید محتوا', 'اتصال به نرم‌افزار موجود']},
+    accounting: {t: 'حسابداری', d: 'امور مالی کسب‌وکارت منظم، شفاف و قابل گزارش‌گیری می‌شود.',
+      o: ['دفترداری و ثبت اسناد', 'صدور فاکتور و صورتحساب', 'حقوق و دستمزد', 'مالیات و اظهارنامه', 'گزارش‌های مالی (سود و زیان، ترازنامه)', 'حساب‌های دریافتنی و پرداختنی', 'بودجه‌بندی و کنترل هزینه', 'حسابداری پروژه‌ای', 'ساخت نرم‌افزار حسابداری اختصاصی']},
+    app: {t: 'طراحی اپلیکیشن', d: 'اپلیکیشنی روان و کاربرپسند، از طراحی تا انتشار.',
+      o: ['اندروید', 'iOS', 'اندروید و iOS با هم', 'طراحی رابط UI/UX', 'پنل مدیریت و API (مثلاً با پایتون)', 'درگاه پرداخت', 'نوتیفیکیشن']}
+  };
+  var rq = {sheet: document.getElementById('rq-sheet'), ov: document.getElementById('rq-ov'), key: null, opener: null, text: ''};
+  function $r(id) { return document.getElementById(id); }
+  function openSvc(key, opener) {
+    var v = SV[key]; if (!v) return;
+    rq.key = key; rq.opener = opener;
+    $r('rq-t').textContent = v.t; $r('rq-d').textContent = v.d;
+    var box = $r('rq-opts'); box.textContent = '';
+    v.o.forEach(function (name, i) {
+      var l = document.createElement('label'); l.className = 'opt';
+      var c = document.createElement('input'); c.type = 'checkbox'; c.value = name; c.id = 'rq-o' + i;
+      var sp = document.createElement('span'); sp.textContent = name;
+      l.appendChild(c); l.appendChild(sp); box.appendChild(l);
+    });
+    document.querySelector('input[name="rq-contract"][value="none"]').checked = true;
+    $r('rq-out').textContent = ''; $r('rq-out').className = 'rq-msg'; 
+    rq.ov.classList.add('on'); rq.sheet.classList.add('on');
+    document.documentElement.classList.add('lock');
+    $r('rq-close').focus();
+  }
+  function closeSvc() {
+    rq.ov.classList.remove('on'); rq.sheet.classList.remove('on');
+    document.documentElement.classList.remove('lock');
+    if (rq.opener) rq.opener.focus();
+  }
+  document.querySelectorAll('.card[data-svc]').forEach(function (c) {
+    c.addEventListener('click', function () { openSvc(c.getAttribute('data-svc'), c); });
+    c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSvc(c.getAttribute('data-svc'), c); } });
+  });
+  $r('rq-close').addEventListener('click', closeSvc);
+  rq.ov.addEventListener('click', closeSvc);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && rq.sheet.classList.contains('on')) closeSvc(); });
+
+  function fail(msg) { var o = $r('rq-out'); o.className = 'rq-msg err'; o.textContent = msg; }
+  $r('rq-send').addEventListener('click', function () {
+    var opts = Array.prototype.map.call(document.querySelectorAll('#rq-opts input:checked'), function (i) { return i.value; });
+    var message = $r('rq-msg-in').value.trim(), name = $r('rq-name').value.trim(), phone = $r('rq-phone').value.trim();
+    if (!/^[0-9\u06F0-\u06F9+\s-]{10,16}$/.test(phone)) return fail('شماره تماس را درست وارد کن.');
+    if (!opts.length && message.length < 5) return fail('حداقل یک عملکرد انتخاب کن یا بنویس چه می‌خواهی.');
+    rq.text = buildText(opts, message, name, phone);
+    var btn = $r('rq-send'); btn.disabled = true; btn.textContent = 'در حال ارسال...';
+    fetch('/api/requests', {method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({section: rq.key, options: opts, message: message, name: name, phone: phone, contract: document.querySelector('input[name="rq-contract"]:checked').value, website: $r('rq-hp').value})})
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) { var e = new Error(j.error || 'خطا'); e.server = true; throw e; } return j; }); })
+      .then(function (j) {
+        var o = $r('rq-out'); o.className = 'rq-msg ok'; 
+        o.textContent = 'درخواستت ثبت شد ✅\nشماره پرونده: ' + j.id + '\nبه‌زودی با شماره‌ات تماس می‌گیریم.';
+      })
+      .catch(function (e) {
+        if (e.server) return fail(e.message);
+        // سرور در دسترس نیست (مثلاً هاست ساده): راه‌های پایین صفحه را پیشنهاد بده
+        fail('ارسال خودکار ممکن نشد. از یکی از راه‌های پایین (تلگرام، بله، تماس یا کپی) سفارش را بفرست.');
+      })
+      .then(function () { btn.disabled = false; btn.textContent = 'ارسال درخواست'; });
+  });
+  function buildText(opts, message, name, phone) {
+    return 'درخواست ' + SV[rq.key].t + (opts.length ? '\nعملکردها: ' + opts.join('، ') : '') +
+      (message ? '\nتوضیحات: ' + message : '') + (name ? '\nنام: ' + name : '') + (phone ? '\nشماره: ' + phone : '') + (contractLabel() ? '\nنوع همکاری: ' + contractLabel() : '');
+  }
+  function contractLabel() {
+    var c = document.querySelector('input[name="rq-contract"]:checked');
+    return c ? c.getAttribute('data-l') : '';
+  }
+  function currentText() {
+    var opts = Array.prototype.map.call(document.querySelectorAll('#rq-opts input:checked'), function (i) { return i.value; });
+    return buildText(opts, $r('rq-msg-in').value.trim(), $r('rq-name').value.trim(), $r('rq-phone').value.trim());
+  }
+  function note(msg, ok) { var o = $r('rq-out'); o.className = 'rq-msg' + (ok ? ' ok' : ' err'); o.textContent = msg; }
+  function copyNow(text, doneMsg) {
+    try { navigator.clipboard.writeText(text).then(function () { note(doneMsg, true); }, function () { note('کپی خودکار نشد. این متن را دستی کپی کن:\n' + text, false); }); }
+    catch (e) { note('کپی خودکار نشد. این متن را دستی کپی کن:\n' + text, false); }
+  }
+  $r('rq-tg').addEventListener('click', function (e) {
+    e.preventDefault();
+    window.open('https://t.me/Ialiw_fk?text=' + encodeURIComponent(currentText()), '_blank', 'noopener');
+  });
+  $r('rq-bale').addEventListener('click', function () {
+    var t = currentText();
+    window.open('https://ble.ir/Ialiw_fk', '_blank', 'noopener');
+    copyNow(t, 'متن سفارش کپی شد ✓ داخل چت بله Paste کن و بفرست.');
+  });
+  $r('rq-copy').addEventListener('click', function () { copyNow(currentText(), 'متن سفارش کپی شد ✓'); });
+</script>
+</body>
+</html>
